@@ -43,7 +43,7 @@ const Login = () => {
         localStorage.setItem("token", verificationToken);
         localStorage.setItem("userName", userName);
         
-        navigate("/home");
+        navigate("/");
       } catch (error) {
         console.error("Login error:", error.response?.data);
         setErrors({ email: "Invalid email.", password: "Invalid Password." });

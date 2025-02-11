@@ -56,7 +56,7 @@ const Register = () => {
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/auth/register",
+          "https://sara7a-app-api.vercel.app/api/auth/register",
           values
         );
         navigate("/login");

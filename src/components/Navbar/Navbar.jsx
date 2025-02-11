@@ -17,7 +17,7 @@ const Navbar = () => {
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <NavLink to={"/home"} className="navbar-brand">
+          <NavLink to={"/"} className="navbar-brand">
             Bazario
           </NavLink>
           <button
@@ -35,7 +35,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink to={"/home"} className="nav-link">
+                <NavLink to={"/"} className="nav-link">
                   Products
                 </NavLink>
               </li>

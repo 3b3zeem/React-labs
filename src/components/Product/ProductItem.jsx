@@ -11,7 +11,7 @@ const ProductItem = ({ product, updatePrice, deleteProduct }) => {
         >
           <div
             className="d-flex justify-content-center align-items-center"
-            style={{ height: "200px" }}
+            style={{ borderBottom: "1px solid #ccc" }}
           >
             <img
               src={product.image}
@@ -20,17 +20,9 @@ const ProductItem = ({ product, updatePrice, deleteProduct }) => {
               style={{
                 maxHeight: "180px",
                 objectFit: "contain",
-                position: "relative",
+                paddingBottom: "8px",
               }}
             />
-            <p
-              className={`badge ${
-                product.availability === "In Stock" ? "bg-success" : "bg-danger"
-              }`}
-              style={{ position:"absolute", top:"10px", right:"10px" }}
-            >
-              {product.availability}
-            </p>
           </div>
           <div className="card-body text-center">
             <h5 className="card-title fw-bold">{product.title}</h5>
@@ -40,10 +32,10 @@ const ProductItem = ({ product, updatePrice, deleteProduct }) => {
             </p>
             <div className="d-flex justify-content-center align-items-center mb-2">
               <span className="text-warning me-1">
-                <FaStar /> {product.rating}
+                <FaStar /> {product.rating.rate}
               </span>
               <span className="text-secondary">
-                ({product.reviews} reviews)
+                ({product.rating.count} reviews)
               </span>
             </div>
             <p className="badge bg-secondary">{product.category}</p>

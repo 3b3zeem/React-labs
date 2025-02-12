@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
+import { TokenContext } from "../Context/TokenContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setToken, setUserName } = useContext(TokenContext);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -40,8 +42,8 @@ const Login = () => {
         
         const { verificationToken, userName } = response.data.user;
         
-        localStorage.setItem("token", verificationToken);
-        localStorage.setItem("userName", userName);
+        setToken(verificationToken);
+        setUserName(userName)
         
         navigate("/");
       } catch (error) {

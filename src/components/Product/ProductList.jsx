@@ -43,9 +43,14 @@ const ProductList = () => {
     }
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setCurrentPage(1); 
+  };
+
   return (
     <div className="container mt-4">
-      <SearchBar setSearchQuery={setSearchQuery} />
+      <SearchBar setSearchQuery={handleSearch} />
 
       {loading ? (
         <p className="text-center text-muted">Loading...</p>

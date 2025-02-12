@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import "./Category.model.css"
+import "./Category.model.css";
+import { Link } from "react-router";
+import { CartContext } from "../Context/CartContext";
 
 const Categories = () => {
   const [category, setCategory] = useState([]);
@@ -24,6 +26,8 @@ const Categories = () => {
       .then((res) => setProduct(res.data))
       .catch((err) => console.error(err));
   };
+
+  const { addToCart } = useContext(CartContext);
 
   return (
     <React.Fragment>
@@ -51,7 +55,7 @@ const Categories = () => {
             {products.length > 0 ? (
               <div className="row">
                 {products.map((product) => (
-                  <div key={product.id} className="col-md-4 d-flex">
+                  <div key={product.id} className="col-md-6 col-lg-4 col-12 d-flex g-5">
                     <div
                       className="card shadow-sm w-100 border-0"
                       style={{ minHeight: "450px" }}
@@ -88,6 +92,17 @@ const Categories = () => {
                           </span>
                         </div>
                         <p className="badge bg-secondary">{product.category}</p>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-around pb-4">
+                        <Link
+                          className="btn btn-info"
+                          to={`/product-details/${product.id}`}
+                        >
+                          View
+                        </Link>
+                        <button className="btn btn-success" onClick={addToCart}>
+                          Add to cart
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
+import { TokenContext } from "../Context/TokenContext";
+import { useLocation } from "react-router";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setToken, setUserName } = useContext(TokenContext);
+  const location = useLocation();
+  const message = location.state?.message || "";
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -37,12 +42,12 @@ const Login = () => {
           "https://sara7a-app-api.vercel.app/api/auth/login",
           values
         );
-        
+
         const { verificationToken, userName } = response.data.user;
-        
-        localStorage.setItem("token", verificationToken);
-        localStorage.setItem("userName", userName);
-        
+
+        setToken(verificationToken);
+        setUserName(userName);
+
         navigate("/");
       } catch (error) {
         console.error("Login error:", error.response?.data);
@@ -66,13 +71,16 @@ const Login = () => {
             </p>
             <div className="already">
               <span>Already have an account?</span>
-              <Link to={'/register'}>Sign Up</Link>
+              <Link to={"/register"}>Sign Up</Link>
             </div>
           </div>
         </div>
 
         <div className="form-field-register">
           <div className="form-container">
+            {message && (
+              <div className="alert alert-warning text-center">{message}</div>
+            )}
             <h1>Sign In</h1>
             <form onSubmit={formik.handleSubmit}>
               <div className="form-row">

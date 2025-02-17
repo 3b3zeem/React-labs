@@ -7,7 +7,7 @@ const ProtectedRoutes = ({ children }) => {
   if (token) {
     return children
   } else {
-    return <Navigate to={"/login"} state={{ message: "Not allowed, You must log in first!" }} />
+    return <Navigate to={"/login"} state={{ data: "Not allowed, You must log in first!" }} />
   }
 };
 

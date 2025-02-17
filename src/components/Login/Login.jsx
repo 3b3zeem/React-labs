@@ -5,12 +5,15 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router";
 import { TokenContext } from "../Context/TokenContext";
 import { useLocation } from "react-router";
+import "../Register/register.css"
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const navigate = useNavigate();
   const { setToken, setUserName } = useContext(TokenContext);
+
   const location = useLocation();
-  const message = location.state?.message || "";
+  const message = location.state?.data || "";
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -60,6 +63,9 @@ const Login = () => {
   return (
     <React.Fragment>
       <div className="registration-block">
+        <Helmet>
+          <title>Login</title>
+        </Helmet>
         <div className="image-register">
           <div className="content-above-login">
             <p className="big-text">

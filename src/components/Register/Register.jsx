@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -71,6 +72,9 @@ const Register = () => {
   return (
     <React.Fragment>
       <div className="registration-block">
+        <Helmet>
+          <title>Register</title>
+        </Helmet>
         <div className="image-register">
           <div className="content-above-login">
             <p className="big-text">
@@ -82,7 +86,7 @@ const Register = () => {
             </p>
             <div className="already">
               <span>Already have an account?</span>
-              <Link to={'/login'}>Sign In</Link>
+              <Link to={"/login"}>Sign In</Link>
             </div>
           </div>
         </div>

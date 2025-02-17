@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import "./Category.model.css";
 import { Link } from "react-router";
 import { CartContext } from "../Context/CartContext";
+import { Helmet } from "react-helmet";
 
 const Categories = () => {
   const [category, setCategory] = useState([]);
@@ -31,6 +32,9 @@ const Categories = () => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>{selectedCategory}</title>
+      </Helmet>
       <div className="container mt-4">
         <h2>Categories</h2>
         <div className="d-flex justify-content-center align-sm-center gap-5">
@@ -55,7 +59,10 @@ const Categories = () => {
             {products.length > 0 ? (
               <div className="row">
                 {products.map((product) => (
-                  <div key={product.id} className="col-md-6 col-lg-4 col-12 d-flex g-5">
+                  <div
+                    key={product.id}
+                    className="col-md-6 col-lg-4 col-12 d-flex g-5"
+                  >
                     <div
                       className="card shadow-sm w-100 border-0"
                       style={{ minHeight: "450px" }}

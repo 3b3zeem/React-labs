@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import { addToCartAsync } from "../../redux/cartSlice";
+import { Helmet } from "react-helmet";
 
 const ProductDetails = () => {
   let { id } = useParams();
@@ -19,6 +22,11 @@ const ProductDetails = () => {
     }
   }
 
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCartAsync(product));
+  };
+
   useEffect(() => {
     if (id) {
       getDetails(id);
@@ -28,6 +36,9 @@ const ProductDetails = () => {
   return (
     <React.Fragment>
       <div className="container my-5">
+        <Helmet>
+          <title>{details?.title}</title>
+        </Helmet>
         {details ? (
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -51,7 +62,10 @@ const ProductDetails = () => {
                     </div>
                     <h4 className="text-success fw-bold">${details.price}</h4>
                     <p className="text-secondary">{details.description}</p>
-                    <button className="btn btn-primary w-100 mt-3">
+                    <button
+                      className="btn btn-primary w-100 mt-3"
+                      onClick={handleAddToCart}
+                    >
                       Add to Cart
                     </button>
                   </div>

@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router";
-import { CounterContext } from "../Context/CounterContext";
+// import { CounterContext } from "../Context/CounterContext";
 import { TokenContext } from "../Context/TokenContext";
+import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase, increaseByValue } from "../../redux/counterSlice";
 
 const Navbar = () => {
   const { token, userName, logout } = useContext(TokenContext);
   const navigate = useNavigate();
-  const { counter } = useContext(CounterContext);
+  // const { counter } = useContext(CounterContext);
+
+  let { count } = useSelector((store) => store.Counter);
+  let dispatch = useDispatch();
 
   const handleLogout = () => {
     logout();
@@ -47,8 +52,26 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <NavLink to="/cart" className="nav-link">
-                    Cart <span className="badge bg-primary">{counter}</span>
+                    Cart <span className="badge bg-primary">{count}</span>
                   </NavLink>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => dispatch(increase())}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => dispatch(decrease())}
+                  >
+                    -
+                  </button>
+                  <button
+                    className="btn btn-info"
+                    onClick={() => dispatch(increaseByValue(30))}
+                  >
+                    +10
+                  </button>
                 </li>
               </>
             )}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { FaTrash } from "react-icons/fa";
 
 const Cart = () => {
@@ -53,6 +54,9 @@ const Cart = () => {
 
   return (
     <div className="container py-3">
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       <h2 className="text-center fw-bold mb-3">🛒 Your Cart</h2>
 
       {cartItems.length > 0 ? (
